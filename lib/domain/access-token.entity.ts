@@ -1,6 +1,5 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {ClientEntity} from "./client.entity";
-import {OAuth2Request} from "../ui";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { ClientEntity } from './client.entity';
 
 @Entity('gb_oauth_access_token')
 export class AccessTokenEntity {
@@ -23,10 +22,10 @@ export class AccessTokenEntity {
     })
     refreshToken: string;
 
-    @Column('timestamp', {name: 'access_token_expires_at', nullable: false})
+    @Column('timestamp', {name: 'access_token_expires_at', nullable: false, default: () => 'now()'})
     accessTokenExpiresAt: Date;
 
-    @Column('timestamp', {name: 'refresh_token_expires_at', nullable: false})
+    @Column('timestamp', {name: 'refresh_token_expires_at', nullable: false, default: () => 'now()'})
     refreshTokenExpiresAt: Date;
 
     @ManyToOne(type => ClientEntity, {nullable: false})
@@ -45,6 +44,6 @@ export class AccessTokenEntity {
     @Column('timestamp', {name: 'created_on', nullable: false, default: () => 'now()'})
     createdAt: Date;
 
-    @Column({name: 'created_from', type: 'jsonb', nullable: true})
-    createdFrom: OAuth2Request;
+    // @Column({name: 'created_from', type: 'json', nullable: true})
+    // createdFrom: OAuth2Request;
 }

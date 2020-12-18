@@ -9,7 +9,7 @@ export class ClientEntity {
     @Column({type: 'text', nullable: false})
     name: string;
 
-    @Column({name: 'client_id', type: 'text', nullable: false})
+    @Column({name: 'client_id', nullable: false})
     clientId: string;
 
     @Column({name: 'client_secret', type: 'text', nullable: true})
@@ -19,7 +19,7 @@ export class ClientEntity {
         name: 'grants',
         type: 'simple-array',
         nullable: false,
-        default: 'client_credentials,refresh_token'
+        // default: 'client_credentials,refresh_token'
     })
     grants: string[];
 
